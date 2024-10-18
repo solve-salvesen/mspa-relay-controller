@@ -4,7 +4,7 @@ Gives the ability to control the heat element of MSPA Tub to adjust heating remo
 Hardware:
 - NodeMCU ESP32
 - Wiring
-- DS18B20 waterproof temperatursensor
+- DS18B20 waterproof temperaturesensor
 - 4.7K ohm resistor
 - One-channel relay
 
