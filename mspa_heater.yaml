@@ -31,9 +31,9 @@ sensor:
     update_interval: 60s
     lambda: |-
       if (id(Relay).state) {
-        return 1000.0;   # heatelemenet effect in Watt when on
+        return 1000.0;   // heatelemenet effect in Watt when on
       } else {
-        return 0.0; # heatelemenet effect in Watt when off
+        return 0.0; // heatelemenet effect in Watt when off
       }
   - platform: dallas_temp
     one_wire_id: bus1
