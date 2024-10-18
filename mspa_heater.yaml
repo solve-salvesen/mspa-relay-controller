@@ -1,0 +1,68 @@
+captive_portal:
+
+web_server:
+    port: 80
+    log: False
+    ota: False
+
+switch:
+  - platform: gpio
+    pin: GPIO14 # D14
+    name: "Relay"
+    id: Relay
+
+one_wire:
+  - platform: gpio
+    pin: GPIO4 # D4
+    id: bus1
+
+sensor:
+
+  - platform: total_daily_energy
+    name: "Total Daily Energy"
+    power_id: my_power
+    device_class: "energy"
+    state_class: "total_increasing"
+
+  - platform: template
+    name: "Power"
+    id: my_power
+    unit_of_measurement: W
+    update_interval: 60s
+    lambda: |-
+      if (id(Relay).state) {
+        return 1000.0;   # heatelemenet effect in Watt when on
+      } else {
+        return 0.0; # heatelemenet effect in Watt when off
+      }
+  - platform: dallas_temp
+    one_wire_id: bus1
+    name: "Temperature"
+    update_interval: 60s
+    filters:
+     - offset: 0  # Set your desired temperature offset here
+
+  - platform: wifi_signal
+    name: "WiFi Signal"
+    update_interval: 60s
+    
+  - platform: uptime
+    name:  "Upime"
+
+# Enable time component to reset energy at midnight
+time:
+  - platform: sntp
+    id: my_time
+
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: "IP Address"
+ 
+binary_sensor:
+  - platform: status
+    name: "Connect" 
+    
+button:
+  - platform: restart
+    name: "Restart"   
