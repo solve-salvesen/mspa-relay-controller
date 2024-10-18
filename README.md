@@ -10,7 +10,7 @@ Hardware:
 
 Configuration:
 - Adjust this line to reflect your heat elements size:
-          return 1000.0;   # heatelemenet effect in Watt when on
+          return 1000.0;   // heatelemenet effect in Watt when on
 - Adjust this line if you need an offset to the temperatursensor
           offset: 0  # Set your desired temperature offset here
 
